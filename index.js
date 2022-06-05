@@ -1,14 +1,21 @@
 const express = require('express');
+const axios = require('axios');
 const app = express();
 const port = 3010;
 const path = require('path');
 
-app.use(express.static('static'));
+require('dotenv').config();
+const mysql = require('mysql2');
+const connection = mysql.createConnection(process.env.DATABASE_URL);
+console.log('Connected to PlanetScale!');
+connection.end();
 
-app.get('/', (req, res) => {
-  res.sendFile(path.resolve('pages/index.html'));
-});
+// app.use(express.static('static'));
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
-});
+// app.get('/', (req, res) => {
+//   res.sendFile(path.resolve('pages/index.html'));
+// });
+
+// app.listen(port, () => {
+//   console.log(`Example app listening at http://localhost:${port}`);
+// });
